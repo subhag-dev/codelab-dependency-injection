@@ -1,6 +1,5 @@
-package com.example.android.dagger.di
+package com.example.android.dagger.di.scope
 
-import javax.inject.Qualifier
 import javax.inject.Scope
 
 @Scope

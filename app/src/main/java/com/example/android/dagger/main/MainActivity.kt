@@ -40,11 +40,12 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        (application as MyApplication).appComponent.inject(this)
+        val userManager = (application as MyApplication)
+            .appComponent
+            .provideUserManager()
 
         super.onCreate(savedInstanceState)
 
-        val userManager = (application as MyApplication).userManager
         if (!userManager.isUserLoggedIn()) {
             if (!userManager.isUserRegistered()) {
                 startActivity(Intent(this, RegistrationActivity::class.java))
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             }
         } else {
             setContentView(R.layout.activity_main)
-
+            userManager.userComponent!!.inject(this)
             setupViews()
         }
     }
